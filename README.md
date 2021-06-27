@@ -18,7 +18,7 @@ python run_dtrpo.py --env=Pendulum-v0 --mode=test --seeds 0 --stochastic_delays 
 --epoch_load=2000 --test_episodes=50 --test_steps=250 --test_type=Test 
 --save_dir ./output/dtrpo/Pendulum-Results/Results-Delay3/Pendulum-v0-21-01-05_03_16_864646
 ```
-The rest of the arguments are documented in the script. D-TRPO results can be found in output/dtrpo folder.
+The rest of the arguments is documented in the script. D-TRPO results can be found in output/dtrpo folder.
 
 ### L2-TRPO Algorithm
 L2-TRPO algorithm is accessible by running run_dtrpo.py script without the use_belief option:
@@ -32,7 +32,7 @@ python run_dtrpo.py --env=Pendulum-v0 --mode=train --seeds 0 1 2 --delay=5 --for
 python run_dtrpo.py --env=Pendulum-v0 --mode=test --seeds 0 --delay=5 --test_episodes=50 --test_steps=250 --epoch_load=2000
 --save_dir ./output/l2trpo/Pendulum-Results/Results-Delay5/Pendulum-v0-21-01-06_11_11_987028
 ```
-The rest of the arguments are documented in the script. L2-TRPO results can be found in output/l2trpo folder.
+The rest of the arguments is documented in the script. L2-TRPO results can be found in output/l2trpo folder.
 
 ### M-TRPO Algorithm
 M-TRPO algorithm is accessible by running run_trpo.py script with the memoryless option:
@@ -44,7 +44,7 @@ python run_trpo.py --memoryless --mode=train --env=Pendulum-v0 --delay=3 --memor
 python run_trpo.py --memoryless --mode=test --env=Pendulum-v0 --delay=3 --seeds 0 --test_epoch=2000 --test_episodes=50
 --test_steps=250 --save_dir ./output/trpo/Pendulum-Memoryless/Results-Delay3/Pendulum-v0-21-01-02_11_58_049693
 ```
-The rest of the arguments are documented in the script. M-TRPO results can be found in output/trpo/Pendulum-Memoryless.
+The rest of the arguments is documented in the script. M-TRPO results can be found in output/trpo/Pendulum-Memoryless.
 
 ### A-TRPO Algorithm
 A-TRPO algorithm is accessible by running run_trpo.py script without the memoryless option:
@@ -56,7 +56,7 @@ python run_trpo.py --mode=train --env=Pendulum-v0 --delay=3 --seeds 0 1 2 3 4 --
 python run_trpo.py --mode=test --env=Pendulum-v0 --delay=3 --seeds 0 --test_epoch=2000 --test_episodes=50 --test_steps=250
 --save_dir ./output/trpo/Pendulum-Augmented/Results-Delay3/Pendulum-v0-21-01-05_11_05_763071
 ```
-The rest of the arguments are documented in the script. M-TRPO results can be found in output/trpo/Pendulum-Augmented.
+The rest of the arguments is documented in the script. M-TRPO results can be found in output/trpo/Pendulum-Augmented.
 
 ### SARSA Algorithm
 SARSA Algorithm is accessible by running run_sarsa.py script:
@@ -67,7 +67,7 @@ python run_sarsa.py --mode=train --env=Pendulum --delay=5 --seeds 0 1 2 --epochs
 python run_sarsa.py --mode=test --env=Pendulum --delay=5 --seeds 0 --test_episode=50 --test_steps=250 --s_space=15
 --a_space=3 --save_dir ./output/sarsa/Pendulum-Results/Results-Delay3\Pendulum-20-12-31_13_44_975089
 ```
-The rest of the arguments are documented in the script. SARSA results can be found in output/sarsa.
+The rest of the arguments is documented in the script. SARSA results can be found in output/sarsa.
 
 ### DSARSA Algorithm
 DSARSA Algorithm is accessible by running run_sarsa.py script with the dsarsa option:
@@ -78,11 +78,25 @@ python run_sarsa.py --dsarsa --mode=train --env=Pendulum  --delay=5 --seed 5 6 7
 python run_sarsa.py --dsarsa --mode=test --env=Pendulum --delay=5 --seeds 0 --test_episode=50 --test_steps=250 --s_space=15
 --a_space=3 --save_dir ./output/dsarsa/Pendulum-Results/Results-Delay3\Pendulum-21-01-02_12_48_641409
 ```
-The rest of the arguments are documented in the script. DSARSA results can be found in output/dsarsa.
+The rest of the arguments is documented in the script. DSARSA results can be found in output/dsarsa.
+
+### Stand-alone State-Prediction Module
+The stand-alone version of the State Prediction Module is accessibile by running run_recoencoder.py script:
+```
+python run_recoencoder.py --mode=train --env=PendulumDelayEnv --train_episodes=200 --n_trajectories=100 --max_timesteps=250
+--delay=3 --seed=0--adam_lr=0.005 --mask --encoder_ff_hid=8 --encoder_dim=128 --encoder_layers=1
+
+python run_recoencoder.py --mode=test --env=PendulumDelayEnv --test_episodes=200 --n_trajectories=100 --max_timesteps=250
+--delay=3 --seed=0 --save_dir=./output/recoencoder/Pendulum-Results/Results-Causal/PendulumDelayEnv-run1
+```
+The rest of the arguments is documented in the script. Results can be found in output/recoencoder.
 
 ### Result visualization
 Results and images shown in the Thesis can be found in the notebooks folder, specifically:
   - thesis_encoder notebook is dedicated to Encoder Parameter Tuning (Section 6.2) results;
   - thesis_det notebook is dedicated to Deterministic Enviroment (Section 6.3) results;
   - thesis_stoch notebook is dedicated to Stochastic Environment (Section 6.4) results.
+  - thesis_tables notebook is dedicated to results' tables.
+  
+ 
   
