@@ -1,19 +1,19 @@
-# import torch
+import torch
 # from torch.autograd import grad
 
 
 # # [Reference] https://github.com/ajlangley/trpo-pytorch
 
 
-# def get_device():
-#     """
-#     Return a torch.device object. Returns a CUDA device if it is available and
-#     a CPU device otherwise.
-#     """
-#     if torch.cuda.is_available():
-#         return torch.device('cuda')
-#     else:
-#         return torch.device('cpu')
+def get_device():
+        """
+        Return a torch.device object. Returns a CUDA device if it is available and
+        a CPU device otherwise.
+        """
+        if torch.cuda.is_available():
+            return torch.device('cuda')
+        else:
+            return torch.device('cpu')
 
 
 # save_dir = '../../saved-sessions'
