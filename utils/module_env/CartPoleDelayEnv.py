@@ -11,6 +11,7 @@ from gym import spaces, logger
 import numpy as np
 from utils.delays import NormedPositiveCompoundBernoulliProcess, ConstantDelay
 
+
 class CartPoleDelayEnv(gym.Env):
 
     metadata = {

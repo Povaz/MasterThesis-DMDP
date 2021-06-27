@@ -49,7 +49,7 @@ The rest of the arguments are documented in the script. M-TRPO results can be fo
 ### A-TRPO Algorithm
 A-TRPO algorithm is accessible by running run_trpo.py script without the memoryless option:
 ```
-python run_trpo.py--mode=train --env=Pendulum-v0 --delay=3 --seeds 0 1 2 3 4 --epochs=2000 -steps_per_epoch=5000 
+python run_trpo.py --mode=train --env=Pendulum-v0 --delay=3 --seeds 0 1 2 3 4 --epochs=2000 --steps_per_epoch=5000 
 --max_ep_len=250 --gamma=0.99 --delta=0.001 --v_hid=64 --v_l=1 --vf_lr=0.01 --v_iters=3 --pi_hid=64 --pi_l=2 
 --save_period=500
 

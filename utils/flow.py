@@ -1,4 +1,3 @@
-
 import torch
 import torch.nn as nn
 import numpy as np
@@ -22,6 +21,7 @@ def get_mask(in_features, out_features, in_flow_features, mask_type=None):
         out_degrees = torch.arange(out_features) % (in_flow_features - 1)
 
     return (out_degrees.unsqueeze(-1) >= in_degrees.unsqueeze(0)).float()
+
 
 class MaskedLinear(nn.Module):
     def __init__(self,

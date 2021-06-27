@@ -36,7 +36,6 @@ class ReconstructionNetwork(nn.Module):
             self.high_action_value = env.action_space.high
             self.action_scaling = torch.from_numpy(np.max((self.high_action_value, -self.low_action_value), 0)).reshape(1, 1, -1)
             self.state_scaling = torch.from_numpy(np.max((self.high_state_value, -self.low_state_value), 0)).reshape(1, 1, -1)
-            
 
         # Inverted Pendulum Environment: State Reconstruction
         # WARNING: this option only works with Inverted Pendulum Environment and it is implemented here

@@ -6,14 +6,14 @@ import torch
 
 
 def get_device():
-        """
-        Return a torch.device object. Returns a CUDA device if it is available and
-        a CPU device otherwise.
-        """
-        if torch.cuda.is_available():
-            return torch.device('cuda')
-        else:
-            return torch.device('cpu')
+    """
+    Return a torch.device object. Returns a CUDA device if it is available and
+    a CPU device otherwise.
+    """
+    if torch.cuda.is_available():
+        return torch.device('cuda')
+    else:
+        return torch.device('cpu')
 
 
 # save_dir = '../../saved-sessions'

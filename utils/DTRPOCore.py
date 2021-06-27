@@ -192,7 +192,6 @@ class TRNGaussianActor(Actor):
         return pi.log_prob(act).sum(axis=-1)
 
 
-
 class TRNActorCritic(nn.Module):
     def __init__(self, obs_dim, action_space, state_space, enc_dim=128, enc_heads=2, enc_ff=8, enc_l=1, dropout=0.0,
                  enc_rescaling=False, enc_causal=False, pi_hidden_sizes=(64, 64), v_hidden_sizes=(64, 64),
@@ -203,15 +202,17 @@ class TRNActorCritic(nn.Module):
         # Encoder Builder
         pi_in_dim = hidden_dim
         if use_belief:
-            self.enc = BeliefModuleStoch(state_space, action_space, encoder_dim=enc_dim, encoder_heads=enc_heads, encoder_ff_hid=enc_ff, 
-                    encoder_layers=enc_l, hidden_size=hidden_size, num_layers=n_layers, hidden_dim=hidden_dim, 
-                    n_blocks_maf=n_blocks_maf, hidden_dim_maf=hidden_dim_maf, dropout=dropout, 
-                    rescaling=enc_rescaling, causal=enc_causal, conv=conv, lstm=lstm, only_last_belief=only_last_belief)
+            self.enc = BeliefModuleStoch(state_space, action_space, encoder_dim=enc_dim, encoder_heads=enc_heads,
+                                         encoder_ff_hid=enc_ff, encoder_layers=enc_l, hidden_size=hidden_size,
+                                         num_layers=n_layers, hidden_dim=hidden_dim, n_blocks_maf=n_blocks_maf,
+                                         hidden_dim_maf=hidden_dim_maf, dropout=dropout, rescaling=enc_rescaling,
+                                         causal=enc_causal, conv=conv, lstm=lstm, only_last_belief=only_last_belief)
         else:
-            self.enc = BeliefModuleDeter(state_space, action_space, encoder_dim=enc_dim, encoder_heads=enc_heads, encoder_ff_hid=enc_ff, 
-                    encoder_layers=enc_l, hidden_size=hidden_size, num_layers=n_layers, hidden_dim=hidden_dim, 
-                    dropout=dropout, rescaling=enc_rescaling, causal=enc_causal, conv=conv, lstm=lstm, only_last_belief=only_last_belief,
-                    pred_to_pi=pred_to_pi)
+            self.enc = BeliefModuleDeter(state_space, action_space, encoder_dim=enc_dim, encoder_heads=enc_heads,
+                                         encoder_ff_hid=enc_ff, encoder_layers=enc_l, hidden_size=hidden_size,
+                                         num_layers=n_layers, hidden_dim=hidden_dim, dropout=dropout,
+                                         rescaling=enc_rescaling, causal=enc_causal, conv=conv, lstm=lstm,
+                                         only_last_belief=only_last_belief, pred_to_pi=pred_to_pi)
             if pred_to_pi:
                 pi_in_dim = get_space_dim(state_space)
 
@@ -226,9 +227,6 @@ class TRNActorCritic(nn.Module):
 
     def step(self, obs):
         with torch.no_grad():
-            # if obs.shape[1]==self.state_dim:
-            #     enc_obs = to_tensor(s_t)
-            # else:
             enc_obs = self.enc(obs).detach()
             pi = self.pi._distribution(enc_obs)
             a = pi.sample()

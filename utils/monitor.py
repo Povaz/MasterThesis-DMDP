@@ -9,6 +9,7 @@ from gym.utils.json_utils import json_encode_np
 FILE_PREFIX = 'openaigym'
 MANIFEST_PREFIX = FILE_PREFIX + '.manifest'
 
+
 class Monitor(Wrapper):
     def __init__(self, env, directory, video_callable=None, force=False, resume=False,
                  write_upon_reset=False, uid=None, mode=None):
@@ -23,8 +24,7 @@ class Monitor(Wrapper):
         self._monitor_id = None
         self.env_semantics_autoreset = env.metadata.get('semantics.autoreset')
 
-        self._start(directory, video_callable, force, resume,
-                            write_upon_reset, uid, mode)
+        self._start(directory, video_callable, force, resume, write_upon_reset, uid, mode)
 
     def step(self, action):
         self._before_step(action)
@@ -45,9 +45,7 @@ class Monitor(Wrapper):
         logger.info("Setting the monitor mode is deprecated and will be removed soon")
         self._set_mode(mode)
 
-
-    def _start(self, directory, video_callable=None, force=False, resume=False,
-              write_upon_reset=False, uid=None, mode=None):
+    def _start(self, directory, video_callable=None, force=False, resume=False, write_upon_reset=False, uid=None, mode=None):
         """Start monitoring.
         Args:
             directory (str): A per-training run directory where to record stats.

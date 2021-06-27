@@ -27,14 +27,9 @@ class Simulator:
                 env.action_space.seed(seed)
 
 
-
-
-
-
 class SinglePathSimulatorStoch(Simulator):
     def __init__(self, env_name, policy, n_trajectories, trajectory_len, delay=0, stochastic_delays=False, **env_args):
         Simulator.__init__(self, env_name, policy, n_trajectories, trajectory_len, delay, **env_args)
-
 
     # A method that runs different trajectories to collect samples
     def sample_trajectories(self):

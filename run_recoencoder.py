@@ -103,7 +103,6 @@ def test(rec_network, simulator, env, last_state=False):
     state_dim = get_space_dim(env.state_space)
     rec_network.eval()
 
-
     # Test Loop
     while episode < args.test_episodes:
         # Reset Environment
@@ -225,6 +224,11 @@ if __name__ == '__main__':
         file_args.seed = args.seed
         file_args.uniform = args.uniform
         file_args.last_state = args.last_state
+        file_args.stochastic_delays = args.stochastic_delays
+        file_args.maxdelay = args.maxdelay
+        file_args.transformer_decoder = args.transformer_decoder
+        file_args.append_pos_encoding = args.append_pos_encoding
+        file_args.pendulum_state = args.pendulum_state
         args = file_args
 
     env = import_module('utils.module_env.' + args.env)
@@ -265,12 +269,8 @@ if __name__ == '__main__':
             json.dump(args.__dict__, text_file, indent=2)
 
         # Construct the Simulator that will draw the trajectories
-        # if args.stochastic_delays:
         simulator = SinglePathSimulatorStoch(simulator_env, policy, args.n_trajectories, args.max_timesteps,
-                                    delay=args.delay, stochastic_delays=args.stochastic_delays, seed=args.seed)
-        # else:
-        #     simulator = SinglePathSimulator(simulator_env, policy, args.n_trajectories, args.max_timesteps,
-        #                                 delay=args.delay, stochastic_delays=args.stochastic_delays, seed=args.seed)
+                                             delay=args.delay, stochastic_delays=args.stochastic_delays, seed=args.seed)
 
         # Train Function
         train(network, simulator, optimizer, transformer_decoder=args.transformer_decoder, last_state=args.last_state)
@@ -285,6 +285,6 @@ if __name__ == '__main__':
         network.load_state_dict(ckpt['reconstruction_net_dict'])
 
         # Test Function
-        simulator = SinglePathSimulatorStoch(simulator_env, policy, 1, args.max_timesteps,
-                                    delay=args.delay, stochastic_delays=args.stochastic_delays)
+        simulator = SinglePathSimulatorStoch(simulator_env, policy, 1, args.max_timesteps, delay=args.delay,
+                                             stochastic_delays=args.stochastic_delays)
         test(network, simulator, env, last_state=args.last_state)

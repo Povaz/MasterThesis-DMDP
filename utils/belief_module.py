@@ -8,9 +8,6 @@ from utils.various import get_space_dim
 from utils.flow import MAF
 
 
-
-
-
 class InputMapping(nn.Module):
     """Input mapping for the belief network. Takes a couple of state action as input and returns 
     a quantity that will be processed by the encoder.

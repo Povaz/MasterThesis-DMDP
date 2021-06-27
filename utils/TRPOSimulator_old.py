@@ -6,7 +6,6 @@ import sys
 from utils.torch import get_device
 from utils.normalized_env import NormalizedEnv
 from torch.nn.utils.rnn import pad_sequence
-from utils.various import get_space_dim
 
 
 # [Reference] https://github.com/ajlangley/trpo-pytorch
