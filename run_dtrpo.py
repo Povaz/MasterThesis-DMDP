@@ -96,7 +96,8 @@ def launch_dtrpo(args, seed):
         dtrpo = DTRPO(env, actor_critic=Core.TRNActorCritic, ac_kwargs=ac_kwargs, seed=seed,
                       save_dir=args.save_dir, use_belief=file_args['use_belief'])
 
-        dtrpo.test(test_episodes=args.test_episodes, max_steps=args.test_steps, epoch=args.epoch_load, test=args.test_type)
+        dtrpo.test(test_episodes=args.test_episodes, max_steps=args.test_steps, epoch=args.epoch_load,
+                   test=args.test_type, render=args.render)
 
 
 if __name__ == '__main__':
@@ -141,6 +142,7 @@ if __name__ == '__main__':
     parser.add_argument('--test_steps', type=int, default=250, help='Number of Steps per Test Episode.')
     parser.add_argument('--epoch_load', type=str, default=None, help='Epoch to load.')
     parser.add_argument('--test_type', type=str, default=None, help='Test Name for saving pt file.')
+    parser.add_argument('--render', action='store_true', help='Whether rendering the Env. while testing or not.')
 
     # Value Function Specific Arguments
     parser.add_argument('--v_hid', type=int, default=64, help='Number of Neurons in each Hidden Layers.')

@@ -360,7 +360,7 @@ class TRPO:
         plt.savefig(os.path.join(self.save_dir, filename + '.png'))
         plt.close(fig)
 
-    def test(self, test_epoch=2000, test_episodes=10, max_steps=250):
+    def test(self, test_epoch=2000, test_episodes=10, max_steps=250, render=False):
         self.load_session(test_epoch)
         episode = 0
 
@@ -378,7 +378,8 @@ class TRPO:
                 a, _, _ = self.ac.step(torch.as_tensor(o, dtype=torch.float32))
                 next_o, r, d, _ = self.env.step(a)
                 o = self.format_o(next_o)
-                # self.env.render()
+                if render:
+                    self.env.render()
                 ep_ret += np.sum(r)
                 step += 1
 

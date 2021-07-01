@@ -1,9 +1,9 @@
 import json, argparse
 import gym
+import torch.nn as nn
 from importlib import import_module
 from utils import TRPOCore as Core
 from algorithm.trpo import TRPO
-import torch.nn as nn
 from utils.various import *
 from utils.delays import DelayWrapper
 from utils.stochastic_wrapper import StochActionWrapper
@@ -65,7 +65,8 @@ def launch_trpo(args, seed):
         trpo = TRPO(env, actor_critic=Core.MLPActorCritic, ac_kwargs=ac_kwargs, seed=seed,
                     save_dir=args.save_dir, memoryless=file_args['memoryless'])
 
-        trpo.test(test_epoch=args.test_epoch, test_episodes=args.test_episodes, max_steps=args.test_steps)
+        trpo.test(test_epoch=args.test_epoch, test_episodes=args.test_episodes, max_steps=args.test_steps,
+                  render=args.render)
 
 
 if __name__ == '__main__':
@@ -95,6 +96,7 @@ if __name__ == '__main__':
     parser.add_argument('--test_episodes', type=int, default=10, help='Number of Test Episodes.')
     parser.add_argument('--test_steps', type=int, default=250, help='Number of Steps per Test Episode.')
     parser.add_argument('--test_epoch', type=int, default=0, help='Epoch to be loaded for the Test.')
+    parser.add_argument('--render', action='store_true', help='Whether rendering the Env. while testing or not.')
 
     # Value Function Specific Arguments
     parser.add_argument('--v_hid', type=int, default=64, help='Number of Neurons in each Hidden Layers.')

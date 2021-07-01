@@ -15,7 +15,7 @@ python run_dtrpo.py --use_belief --env=Pendulum-v0 --mode=train --seeds 0 --stoc
 --hidden_dim_maf=16 --save_period=100
 
 python run_dtrpo.py --env=Pendulum-v0 --mode=test --seeds 0 --stochastic_delays --max_delay=50 --delay_proba=0.7
---epoch_load=2000 --test_episodes=50 --test_steps=250 --test_type=Test 
+--epoch_load=2000 --test_episodes=50 --test_steps=250 --test_type=Test --render
 --save_dir ./output/dtrpo/Pendulum-Results/Results-Delay3/Pendulum-v0-21-01-05_03_16_864646
 ```
 The rest of the arguments is documented in the script. D-TRPO results can be found in output/dtrpo folder.
@@ -29,8 +29,8 @@ python run_dtrpo.py --env=Pendulum-v0 --mode=train --seeds 0 1 2 --delay=5 --for
 --train_enc_iters=1 --enc_lr=0.005 --enc_dim=68 --enc_heads=2 --enc_l=1 --enc_ff=8 --enc_causal --enc_pred_to_pi
 --save_period=100
 
-python run_dtrpo.py --env=Pendulum-v0 --mode=test --seeds 0 --delay=5 --test_episodes=50 --test_steps=250 --epoch_load=2000
---save_dir ./output/l2trpo/Pendulum-Results/Results-Delay5/Pendulum-v0-21-01-06_11_11_987028
+python run_dtrpo.py --env=Pendulum-v0 --mode=test --seeds 0 --delay=5 --test_episodes=50 --test_steps=250 
+--epoch_load=2000 --render --save_dir ./output/l2trpo/Pendulum-Results/Results-Delay5/Pendulum-v0-21-01-06_11_11_987028
 ```
 The rest of the arguments is documented in the script. L2-TRPO results can be found in output/l2trpo folder.
 
@@ -42,7 +42,7 @@ python run_trpo.py --memoryless --mode=train --env=Pendulum-v0 --delay=3 --memor
 --pi_hid=64 --pi_l=2 --save_period=500
 
 python run_trpo.py --memoryless --mode=test --env=Pendulum-v0 --delay=3 --seeds 0 --test_epoch=2000 --test_episodes=50
---test_steps=250 --save_dir ./output/trpo/Pendulum-Memoryless/Results-Delay3/Pendulum-v0-21-01-02_11_58_049693
+--test_steps=250 --render --save_dir ./output/trpo/Pendulum-Memoryless/Results-Delay3/Pendulum-v0-21-01-02_11_58_049693
 ```
 The rest of the arguments is documented in the script. M-TRPO results can be found in output/trpo/Pendulum-Memoryless.
 
@@ -54,7 +54,7 @@ python run_trpo.py --mode=train --env=Pendulum-v0 --delay=3 --seeds 0 1 2 3 4 --
 --save_period=500
 
 python run_trpo.py --mode=test --env=Pendulum-v0 --delay=3 --seeds 0 --test_epoch=2000 --test_episodes=50 --test_steps=250
---save_dir ./output/trpo/Pendulum-Augmented/Results-Delay3/Pendulum-v0-21-01-05_11_05_763071
+--render --save_dir ./output/trpo/Pendulum-Augmented/Results-Delay3/Pendulum-v0-21-01-05_11_05_763071
 ```
 The rest of the arguments is documented in the script. M-TRPO results can be found in output/trpo/Pendulum-Augmented.
 
@@ -65,7 +65,7 @@ python run_sarsa.py --mode=train --env=Pendulum --delay=5 --seeds 0 1 2 --epochs
 --max_ep_len=250 --lr=0.1 --s_space=15 --a_space=3
 
 python run_sarsa.py --mode=test --env=Pendulum --delay=5 --seeds 0 --test_episode=50 --test_steps=250 --s_space=15
---a_space=3 --save_dir ./output/sarsa/Pendulum-Results/Results-Delay3\Pendulum-20-12-31_13_44_975089
+--a_space=3 --render --save_dir ./output/sarsa/Pendulum-Results/Results-Delay3\Pendulum-20-12-31_13_44_975089
 ```
 The rest of the arguments is documented in the script. SARSA results can be found in output/sarsa.
 
@@ -76,7 +76,7 @@ python run_sarsa.py --dsarsa --mode=train --env=Pendulum  --delay=5 --seed 5 6 7
 --max_ep_len=250 --lr=0.1
 
 python run_sarsa.py --dsarsa --mode=test --env=Pendulum --delay=5 --seeds 0 --test_episode=50 --test_steps=250 --s_space=15
---a_space=3 --save_dir ./output/dsarsa/Pendulum-Results/Results-Delay3\Pendulum-21-01-02_12_48_641409
+--a_space=3 --render --save_dir ./output/dsarsa/Pendulum-Results/Results-Delay3\Pendulum-21-01-02_12_48_641409
 ```
 The rest of the arguments is documented in the script. DSARSA results can be found in output/dsarsa.
 

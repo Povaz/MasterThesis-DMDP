@@ -55,7 +55,7 @@ def launch_sarsa(args, seed):
 
         agent = sarsa(env, delay=args.delay, s_space=file_args['s_space'], a_space=file_args['a_space'], save_dir=args.save_dir)
 
-        agent.test(test_episodes=args.test_episodes, max_steps=args.test_steps)
+        agent.test(test_episodes=args.test_episodes, max_steps=args.test_steps, render=args.render)
 
 
 if __name__ == '__main__':
@@ -80,6 +80,7 @@ if __name__ == '__main__':
     # Test Specific Arguments
     parser.add_argument('--test_episodes', type=int, default=10, help='Number of Test Episodes.')
     parser.add_argument('--test_steps', type=int, default=250, help='Number of Steps per Test Episode.')
+    parser.add_argument('--render', action='store_true', help='Whether rendering the Env. while testing or not.')
 
     # SARSA Specific Arguments
     parser.add_argument('--dsarsa',  action='store_true', help='Whether to use DSARSA or SARSA.')

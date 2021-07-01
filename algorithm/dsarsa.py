@@ -235,7 +235,7 @@ class DSARSA:
         plt.savefig(os.path.join(self.save_dir, filename + '.png'))
         plt.close(fig)
 
-    def test(self, test_episodes=10, max_steps=250):
+    def test(self, test_episodes=10, max_steps=250, render=False):
         self.load_session()
         episode = 0
 
@@ -253,7 +253,8 @@ class DSARSA:
                 next_s, r, d, _ = self.env.step([self.actions[a]])
                 s = next_s
 
-                # self.env.render()
+                if render:
+                    self.env.render()
 
                 ep_ret += r.sum()
                 step += 1

@@ -578,7 +578,7 @@ class DTRPO:
         plt.savefig(os.path.join(self.save_dir, filename + '.png'))
         plt.close(fig)
 
-    def test(self, test_episodes=10, max_steps=250, epoch=None, test=None):
+    def test(self, test_episodes=10, max_steps=250, epoch=None, test=None, render=False):
         # Load the Model to train:
         self.load_session(epoch)
 
@@ -604,7 +604,8 @@ class DTRPO:
                 # Execute the Action
                 next_o, r, d, _ = self.env.step(a.reshape(-1))
                 o = self.format_o(next_o)
-                #self.env.render()
+                if render:
+                    self.env.render()
                 ep_ret += np.sum(r)
                 step += 1
                 if d:
