@@ -70,7 +70,7 @@ pandocfilters==1.4.2
 parso==0.7.0
 perlin-noise==1.7
 pickleshare==0.7.5
-Pillow==7.1.2
+Pillow==8.3.2
 pluggy==0.13.1
 prettytable==0.7.2
 procgen==0.10.4
